@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MathThatMatters</string>
+    <string name="title_activity_netgame">Net Game</string>
+    <string name="title_activity_geometry">Geometry</string>
 </resources>
