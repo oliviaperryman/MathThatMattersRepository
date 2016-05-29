@@ -15,6 +15,18 @@
         android:text="Start Net Game"
         android:id="@+id/button_net"
         android:onClick="netClicked" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Classification Game"
+        android:id="@+id/button_classification"
+        android:onClick="classificationClicked" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Measurement Game"
+        android:id="@+id/button_measurement"
+        android:onClick="measurementClicked" />
 
 
 </LinearLayout>

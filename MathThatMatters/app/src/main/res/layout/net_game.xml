@@ -3,10 +3,105 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Net Game!"
-        android:id="@+id/textView" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:columnCount="3"
+        android:rowCount="5"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:text="@string/no"
+            android:id="@+id/no1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="20dp"
+            android:rotation="180"
+            android:onClick="no1Click" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:id="@+id/points1"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:rotation="180"/>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:text="@string/yes"
+            android:id="@+id/yes1"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_margin="20dp"
+            android:rotation="180"
+            android:onClick="yes1Click"/>
+
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chronometer"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_gravity="center_horizontal"
+            android:rotation="180"/>
+
+        <ImageView
+            android:layout_width=" 200dp"
+            android:layout_height="200dp"
+            android:id="@+id/netImg"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"/>
+
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chronometer2"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:text="@string/yes"
+            android:id="@+id/yes2"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_margin="20dp"
+            android:onClick="yes2Click"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:id="@+id/points2"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:text="@string/no"
+            android:id="@+id/no2"
+            android:layout_row="4"
+            android:layout_column="2"
+            android:layout_margin="20dp"
+            android:onClick="no2Click"/>
+    </GridLayout>
 
 </LinearLayout>

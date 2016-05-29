@@ -22,4 +22,12 @@ public class GeometryActivity extends AppCompatActivity {
     public void netClicked(View v){
         startActivity(new Intent(this, NetGame.class));
     }
+
+    public void classificationClicked(View v){
+        startActivity(new Intent(this, ClassificationGame.class));
+    }
+    public void measurementClicked(View v){
+        startActivity(new Intent(this, MeasurementGame.class));
+    }
+
 }

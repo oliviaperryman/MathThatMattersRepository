@@ -18,11 +18,27 @@
         <activity
             android:name=".NetGame"
             android:label="@string/title_activity_netgame"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MeasurementGame"
+            android:label="@string/title_activity_measurementgame"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ClassificationGame"
+            android:label="@string/title_activity_classificationgame"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".GeometryActivity"
             android:label="@string/title_activity_geometry"
             android:theme="@style/AppTheme"></activity>
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
