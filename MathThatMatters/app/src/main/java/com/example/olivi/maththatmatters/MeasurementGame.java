@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,8 @@ public class MeasurementGame extends Activity {
     int[] properShapes,notShapes;
     ImageView img;
     Chronometer chronometer1,chronometer2;
-    Boolean roundStarted,proper,answered1,answered2;
+    int totalTime1,totalTime2;
+    Boolean roundStarted,proper,answered1,answered2, trophy;
     int p1points,p2points;
     TextView points1, points2;
 
@@ -41,6 +43,8 @@ public class MeasurementGame extends Activity {
         p1points = 0;
         p2points = 0;
 
+        trophy = false;
+
         yes1 =  (Button)findViewById(R.id.yes1);
         no1 =  (Button)findViewById(R.id.no1);
         yes2 =  (Button)findViewById(R.id.yes2);
@@ -52,6 +56,11 @@ public class MeasurementGame extends Activity {
         chronometer1 = (Chronometer) findViewById(R.id.chronometer);
         chronometer2 = (Chronometer) findViewById(R.id.chronometer2);
 
+        chronometer1.setBase(SystemClock.elapsedRealtime());
+        chronometer2.setBase(SystemClock.elapsedRealtime());
+
+        totalTime1 = 0;
+        totalTime2 = 0;
 
         img = (ImageView) findViewById(R.id.netImg);
 
@@ -65,7 +74,7 @@ public class MeasurementGame extends Activity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Welcome to Classifying Shapes Game! Press ok to start playing")
+        builder.setMessage("Welcome to Measurement Game! Press ok to start playing")
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -99,6 +108,10 @@ public class MeasurementGame extends Activity {
 
     public void playRound(int n){
         roundStarted = true;
+
+        totalTime1 +=  SystemClock.elapsedRealtime() - chronometer1.getBase();
+        totalTime2 +=  SystemClock.elapsedRealtime() - chronometer2.getBase();
+
         chronometer1.setBase(SystemClock.elapsedRealtime());
         chronometer1.start();
         chronometer2.setBase(SystemClock.elapsedRealtime());
@@ -134,10 +147,31 @@ public class MeasurementGame extends Activity {
         }
         else{
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Congratulations! You finished the Classification Game.")
+
+            String extraMessage ="";
+
+            if (totalTime1 < 300000  ){
+                extraMessage += " Player 1 finished faster than 5 minutes! ";
+                trophy = true;
+            }
+            if (totalTime2 <300000){
+                extraMessage += " Player 2 finished faster than 5 minutes! ";
+                trophy = true;
+            }
+            if(trophy){
+                extraMessage += " Check the achievements page to view your trophy! ";
+
+            }
+
+            builder.setMessage("Congratulations! You finished the Classification Game." + extraMessage)
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            if (trophy){
+                                MainActivity.speedy = true;
+
+                            }
+
                             finish();
                         }
                     });
@@ -153,17 +187,39 @@ public class MeasurementGame extends Activity {
             if(proper){
                 //correct
                 p1points ++;
-                yes1.setBackgroundColor(Color.GREEN);
+                yes1.setBackgroundColor(Color.DKGRAY);
             }
             else{
-                yes1.setBackgroundColor(Color.RED);
+                yes1.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered2){
                 //both answered
-                nextRound();
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
+                }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        nextRound();
+                    }
+                }, 1000);
+
+
             }
         }
+
     }
 
     public synchronized void no1Click(View v){
@@ -172,16 +228,35 @@ public class MeasurementGame extends Activity {
             answered1 = true;
             if(proper){
                 //incorrect
-                no1.setBackgroundColor(Color.RED);
+                no1.setBackgroundColor(Color.DKGRAY);
             }
             else{
                 p1points ++;
-                no1.setBackgroundColor(Color.GREEN);
+                no1.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered2){
                 //both answered
-                nextRound();
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
+                }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextRound();
+                    }
+                }, 1000);
+
             }
         }
     }
@@ -193,15 +268,34 @@ public class MeasurementGame extends Activity {
             if(proper){
                 //correct
                 p2points ++;
-                yes2.setBackgroundColor(Color.GREEN);
+                yes2.setBackgroundColor(Color.DKGRAY);
             }
             else{
-                yes2.setBackgroundColor(Color.RED);
+                yes2.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered1){
                 //both answered
-                nextRound();
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
+                }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextRound();
+                    }
+                }, 1000);
+
             }
         }
 
@@ -213,18 +307,39 @@ public class MeasurementGame extends Activity {
             answered2 = true;
             if(proper){
                 //incorrect
-                no2.setBackgroundColor(Color.RED);
+                no2.setBackgroundColor(Color.DKGRAY);
             }
             else{
                 p2points ++;
-                no2.setBackgroundColor(Color.GREEN);
+                no2.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered1){
-                nextRound();
+                //both answered
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
+                }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        nextRound();
+                    }
+                }, 1000);
+
             }
         }
     }
+
 
     //helper function
     // Implementing Fisher–Yates shuffle

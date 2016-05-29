@@ -7,25 +7,20 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Created by olivi on 2016-05-28.
+ * Created by olivi on 2016-05-29.
  */
-public class GeometryActivity extends AppCompatActivity {
+public class MeasurementActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.geometry_activity);
+        setContentView(R.layout.measurement_layout);
         Button netButton = (Button) findViewById(R.id.button_net);
 
     }
 
-    public void netClicked(View v){
-        startActivity(new Intent(this, NetGame.class));
+    public void measurementClicked(View v){
+        startActivity(new Intent(this, MeasurementGame.class));
     }
-
-    public void classificationClicked(View v){
-        startActivity(new Intent(this, ClassificationGame.class));
-    }
-
 
 }

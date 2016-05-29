@@ -16,11 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    public static boolean speedy, perfectionist, netmaster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button geoButton = (Button) findViewById(R.id.button_geometry);
 
+        MainActivity.speedy = false;
+        MainActivity.perfectionist = false;
+        MainActivity.netmaster = false;
+
         ImageView image = new ImageView(this);
-        image.setImageResource(R.drawable.ada);
+        image.setImageResource(R.drawable.adaedit);
 
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(this).
@@ -47,52 +47,23 @@ public class MainActivity extends AppCompatActivity {
                         }).
                         setView(image);
         builder.create().show();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
     public void geoClicked(View v) {
         startActivity(new Intent(this, GeometryActivity.class));
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.olivi.maththatmatters/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
+    public void measurementClicked(View v) {
+        startActivity(new Intent(this, MeasurementActivity.class));
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void probabilityClicked(View v) {
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.olivi.maththatmatters/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
+
+    public void achievementsClicked(View v) {
+        startActivity(new Intent(this, AchievementActivity.class));
+    }
+
 }

@@ -97,23 +97,22 @@ public class NetGame extends Activity {
         img.setImageResource(properCubes[0]);
 
 
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-        builder2.setMessage("Welcome to Cube Stage! Press ok to start playing")
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        /*try {
-                            System.out.println("Here");
-                            countdown();
-                        }catch(InterruptedException e){
-                            //?
-                        }*/
-                        currentShape = "cube";
-                        playCubes();
-                    }
-                });
-        AlertDialog alert2 = builder2.create();
-        alert2.show();
+        ImageView cube = new ImageView(this);
+        cube.setImageResource(R.drawable.cube);
+
+        AlertDialog.Builder builder2 =
+                new AlertDialog.Builder(this).
+                        setMessage("Welcome to Cube Stage! Press ok to start playing").
+                        setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //countdown();
+                                currentShape = "cube";
+                                playCubes();
+                            }
+                        }).
+                        setView(cube);
+        builder2.create().show();
 
         ImageView image = new ImageView(this);
         image.setImageResource(R.drawable.julia);
@@ -138,28 +137,88 @@ public class NetGame extends Activity {
 
     }
 
-    public void countdown() throws  InterruptedException{
-        for (int i = 3; i>1; i--){
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+    public void countdown(){
 
-            // set title
-            alertDialogBuilder.setTitle("Countdown");
+        AlertDialog.Builder alertDialogBuilder3 = new AlertDialog.Builder(this);
 
-            // set dialog message
-            alertDialogBuilder.setMessage(""+i).setCancelable(false);
 
-            // create alert dialog
-            AlertDialog alertDialog = alertDialogBuilder.create();
+        // set title
+        alertDialogBuilder3.setTitle("3");
+        // set dialog message
+        alertDialogBuilder3.setMessage("3").setCancelable(false);
+        // create alert dialog
+        final AlertDialog alertDialog3 = alertDialogBuilder3.create();
+        // show it
+        alertDialog3.show();
 
-            // show it
-            alertDialog.show();
+        // Execute some code after 2 seconds have passed
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog3.dismiss();
+                AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(getApplicationContext());
+                // set title
+                alertDialogBuilder2.setTitle("2");
+                // set dialog message
+                alertDialogBuilder2.setMessage("2").setCancelable(false);
+                // create alert dialog
+                final AlertDialog alertDialog2 = alertDialogBuilder2.create();
+                // show it
+                alertDialog2.show();
 
-            Thread.sleep(10);
-            // After some action
-            alertDialog.dismiss();
+                for (int i = 3; i > 1; i--) {
+
+                    // Execute some code after 2 seconds have passed
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            alertDialog2.dismiss();
+                            AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(getApplicationContext());
+                            // set title
+                            alertDialogBuilder1.setTitle("1");
+                            // set dialog message
+                            alertDialogBuilder1.setMessage("1").setCancelable(false);
+                            // create alert dialog
+                            final AlertDialog alertDialog1 = alertDialogBuilder1.create();
+                            // show it
+                            alertDialog1.show();
+
+
+                            // Execute some code after 2 seconds have passed
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    alertDialog1.dismiss();
+                                }
+                            }, 1000);
+                        }
+                    }, 1000);
+                }
+            }
+        }, 1000);
+
+
+
+        AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(this);
+        // set title
+        alertDialogBuilder1.setTitle("1");
+        // set dialog message
+        alertDialogBuilder1.setMessage("1").setCancelable(false);
+        // create alert dialog
+        final AlertDialog alertDialog1 = alertDialogBuilder1.create();
+        // show it
+        alertDialog1.show();
+
+
+            // Execute some code after 2 seconds have passed
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    alertDialog1.dismiss();
+                }
+            }, 1000);
         }
-
-    }
 
 
     public void reset(){
@@ -328,18 +387,22 @@ public class NetGame extends Activity {
 
         }
         else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You finished the Cube Stage! Let's move on to Tetrahedrons.")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            reset();
-                            currentShape = "tetrahedron";
-                            playTetrahedron();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
+            ImageView tetra = new ImageView(this);
+            tetra.setImageResource(R.drawable.tetrahedron);
+
+            AlertDialog.Builder builder2 =
+                    new AlertDialog.Builder(this).
+                            setMessage("You finished the Cube Stage! Let's move on to Tetrahedrons.").
+                            setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    reset();
+                                    currentShape = "tetrahedron";
+                                    playTetrahedron();
+                                }
+                            }).
+                            setView(tetra);
+            builder2.create().show();
         }
     }
 
@@ -352,18 +415,22 @@ public class NetGame extends Activity {
             playTetraRound(tetrahedronRounds[currentRound]);
 
         }else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You finished the Tetrahedron Stage! Let's move on to Octahedrons.")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            reset();
-                            currentShape = "octagon";
-                            playOctagon();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
+            ImageView octa = new ImageView(this);
+            octa.setImageResource(R.drawable.octahedron);
+
+            AlertDialog.Builder builder2 =
+                    new AlertDialog.Builder(this).
+                            setMessage("You finished the Tetrahedron Stage! Let's move on to Octahedrons.").
+                            setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    reset();
+                                    currentShape = "octagon";
+                                    playOctagon();
+                                }
+                            }).
+                            setView(octa);
+            builder2.create().show();
         }
     }
 
@@ -396,25 +463,47 @@ public class NetGame extends Activity {
             if(proper){
                 //correct
                 p1points ++;
-                yes1.setBackgroundColor(Color.GREEN);
+                yes1.setBackgroundColor(Color.DKGRAY);
             }
             else{
-                yes1.setBackgroundColor(Color.RED);
+                yes1.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered2){
                 //both answered
-                switch (currentShape) {
-                    case "cube":
-                        nextCubeRound();
-                        break;
-                    case "tetrahedron":
-                        nextTetraRound();
-                        break;
-                    case "octagon":
-                        nextOctaRound();
-                        break;
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
                 }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        //next round
+                        switch (currentShape) {
+                            case "cube":
+                                nextCubeRound();
+                                break;
+                            case "tetrahedron":
+                                nextTetraRound();
+                                break;
+                            case "octagon":
+                                nextOctaRound();
+                                break;
+                        }
+                    }
+                }, 1000);
+
+
             }
         }
     }
@@ -425,26 +514,45 @@ public class NetGame extends Activity {
             answered1 = true;
             if(proper){
                 //incorrect
-                no1.setBackgroundColor(Color.RED);
+                no1.setBackgroundColor(Color.DKGRAY);
             }
             else{
                 p1points ++;
-                no1.setBackgroundColor(Color.GREEN);
+                no1.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered2){
                 //both answered
-                switch (currentShape) {
-                    case "cube":
-                        nextCubeRound();
-                        break;
-                    case "tetrahedron":
-                        nextTetraRound();
-                        break;
-                    case "octagon":
-                        nextOctaRound();
-                        break;
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
                 }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (currentShape) {
+                            case "cube":
+                                nextCubeRound();
+                                break;
+                            case "tetrahedron":
+                                nextTetraRound();
+                                break;
+                            case "octagon":
+                                nextOctaRound();
+                                break;
+                        }
+                    }
+                }, 1000);
+
             }
         }
     }
@@ -456,25 +564,44 @@ public class NetGame extends Activity {
             if(proper){
                 //correct
                 p2points ++;
-                yes2.setBackgroundColor(Color.GREEN);
+                yes2.setBackgroundColor(Color.DKGRAY);
             }
             else{
-                yes2.setBackgroundColor(Color.RED);
+                yes2.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered1){
                 //both answered
-                switch (currentShape) {
-                    case "cube":
-                        nextCubeRound();
-                        break;
-                    case "tetrahedron":
-                        nextTetraRound();
-                        break;
-                    case "octagon":
-                        nextOctaRound();
-                        break;
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
                 }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (currentShape) {
+                            case "cube":
+                                nextCubeRound();
+                                break;
+                            case "tetrahedron":
+                                nextTetraRound();
+                                break;
+                            case "octagon":
+                                nextOctaRound();
+                                break;
+                        }
+                    }
+                }, 1000);
+
             }
         }
 
@@ -486,26 +613,45 @@ public class NetGame extends Activity {
             answered2 = true;
             if(proper){
                 //incorrect
-                no2.setBackgroundColor(Color.RED);
+                no2.setBackgroundColor(Color.DKGRAY);
             }
             else{
                 p2points ++;
-                no2.setBackgroundColor(Color.GREEN);
+                no2.setBackgroundColor(Color.DKGRAY);
             }
             //notifyAll();
             if(answered1){
                 //both answered
-                switch (currentShape) {
-                    case "cube":
-                        nextCubeRound();
-                        break;
-                    case "tetrahedron":
-                        nextTetraRound();
-                        break;
-                    case "octagon":
-                        nextOctaRound();
-                        break;
+                //show correct answer
+                if(proper){
+                    yes1.setBackgroundColor(Color.GREEN);
+                    yes2.setBackgroundColor(Color.GREEN);
+                }else{
+                    no1.setBackgroundColor(Color.GREEN);
+                    no2.setBackgroundColor(Color.GREEN);
                 }
+
+                //pause for a second
+
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (currentShape) {
+                            case "cube":
+                                nextCubeRound();
+                                break;
+                            case "tetrahedron":
+                                nextTetraRound();
+                                break;
+                            case "octagon":
+                                nextOctaRound();
+                                break;
+                        }
+                    }
+                }, 1000);
+
             }
         }
     }

@@ -9,18 +9,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.olivi.maththatmatters.MainActivity">
 
-    <TextView
+
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Menu!"
-        android:id="@+id/textView" />
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo"/>
+
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Measurement"
+        android:id="@+id/button_measurement"
+        android:onClick="measurementClicked"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imageView"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:text="Geometry"
         android:id="@+id/button_geometry"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:onClick="geoClicked" />
+        android:textAlignment="center"
+        android:onClick="geoClicked"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_measurement"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Probability"
+        android:id="@+id/button_probability"
+        android:onClick="probabilityClicked"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_geometry"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Achievements"
+        android:id="@+id/button_achievements"
+        android:onClick="achievementsClicked"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/button_probability"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"/>
+
+    />
 </RelativeLayout>
