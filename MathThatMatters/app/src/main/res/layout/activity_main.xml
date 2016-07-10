@@ -13,7 +13,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:id="@+id/imageView"
+        android:id="@+id/wordmark"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/logo"/>
@@ -22,19 +22,19 @@
     <Button
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="Measurement"
+        android:text="@string/title_activity_measurement"
         android:id="@+id/button_measurement"
         android:onClick="measurementClicked"
         android:textSize="25dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/wordmark"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="Geometry"
+        android:text="@string/title_activity_geometry"
         android:id="@+id/button_geometry"
         android:textAlignment="center"
         android:onClick="geoClicked"
@@ -47,7 +47,7 @@
     <Button
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="Probability"
+        android:text="@string/title_activity_probability"
         android:id="@+id/button_probability"
         android:onClick="probabilityClicked"
         android:textSize="25dp"
@@ -59,7 +59,7 @@
     <Button
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="Achievements"
+        android:text="@string/title_activity_achievement"
         android:id="@+id/button_achievements"
         android:onClick="achievementsClicked"
         android:textSize="25dp"

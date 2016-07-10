@@ -6,7 +6,14 @@
     <string name="title_activity_geometry">Geometry</string>
     <string name="title_activity_measurement">Measurement</string>
     <string name="title_activity_achievement">Achievement</string>
+    <string name="title_activity_probability">Probability</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="tutorial_main">Hi! My name's Ada Lovelace and I was a mathematician and writer in the 18th century.
+        I wrote the world's first algorithm and am often regarded as the first computer programmer. As you can see,
+        women have played a major role in Science, Technology, Engineering and Math. This game was created by an all
+        female development team. Throughout the game, you'll hear from significant women throughout history.</string>
+    <string name="ok">OK</string>
+
 
 </resources>

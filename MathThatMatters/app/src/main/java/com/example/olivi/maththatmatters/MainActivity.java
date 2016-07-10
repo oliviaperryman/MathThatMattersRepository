@@ -16,30 +16,31 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Static variables for trophies because every activity needs access to them and they are the same across the app
+    //Future: save to file, so don't get reset and use list not individual names
     public static boolean speedy, perfectionist, netmaster;
+    public static String gameName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button geoButton = (Button) findViewById(R.id.button_geometry);
-
+        //Initialize all achievements to false
+        //Future: will be kept track of in file (Should have reset button)
         MainActivity.speedy = false;
         MainActivity.perfectionist = false;
         MainActivity.netmaster = false;
 
+        //Getting path to image for tutorial popup
         ImageView image = new ImageView(this);
         image.setImageResource(R.drawable.adaedit);
 
+        //The popup tutorial
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(this).
-                        setMessage("Hi! My name's Ada Lovelace and I was a mathematician and writer in the 18th century. " +
-                                "I wrote the world's first algorithm and am often regarded as the first computer programmer. " +
-                                "As you can see, women have played a major role in Science, Technology, Engineering and Math. " +
-                                "This game was created by an all female development team. Throughout the game, you'll hear from " +
-                                "significant women throughout history.").
-                        setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        setMessage(R.string.tutorial_main).
+                        setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -47,9 +48,13 @@ public class MainActivity extends AppCompatActivity {
                         }).
                         setView(image);
         builder.create().show();
-
     }
 
+    /**
+     * Controls what happens when geometry button is clicked
+     * Open the new activity for geometry screen
+     * @param v
+     */
     public void geoClicked(View v) {
         startActivity(new Intent(this, GeometryActivity.class));
     }
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     public void probabilityClicked(View v) {
 
     }
+
+    //Future: Add other strands of math
 
     public void achievementsClicked(View v) {
         startActivity(new Intent(this, AchievementActivity.class));

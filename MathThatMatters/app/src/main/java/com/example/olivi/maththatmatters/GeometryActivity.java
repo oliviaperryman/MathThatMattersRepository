@@ -15,7 +15,7 @@ public class GeometryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.geometry_activity);
-        Button netButton = (Button) findViewById(R.id.button_net);
+        //Future: Make buttons clickable as levels are unlocked
 
     }
 
